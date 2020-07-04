@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapper.UserInfoMapper">
+    <select id="selectAllUser"  resultType="com.dao.UserInfo">
+        SELECT Id, name, sex, birthday, address FROM testdb.userinfo;
+    </select>
+
+    <select id="selectUser" parameterType="int" resultType="com.dao.UserInfo">
+        SELECT Id, name, sex, birthday, address FROM testdb.userinfo WHERE Id =#{Id};
+    </select>
+
+    <insert id="insertUser" parameterType="com.dao.UserInfo" >
+        INSERT INTO testdb.userinfo(name, sex, birthday, address) VALUES(#{name}, #{sex}, #{birthday}, #{address});
+    </insert>
+
+    <update id="updateUser" parameterType="com.dao.UserInfo">
+        UPDATE testdb.userinfo SET name=#{name}, sex=#{sex}, birthday=#{birthday}, address= #{address} WHERE Id=#{Id};
+    </update>
+    
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM testdb.userinfo WHERE Id=#{Id};
+    </delete>
+</mapper>
